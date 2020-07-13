@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore")
 # 載入資料
 import pandas as pd
 import numpy as np
-df = pd.read_csv('data/creditcard.csv')
+df = pd.read_csv('D:/wen/mydata/creditcard.csv')
 df.head()
 
 
@@ -64,7 +64,7 @@ df['Time'] = std_scaler.fit_transform(df['Time'].values.reshape(-1,1))
 
 
 # 打亂順序
-df = df.sample(frac=1)
+df = df.sample(frac=1,random_state = 42)
 
 # undersampling (平衡類別)
 fraud_df = df.loc[df['Class'] == 1]
