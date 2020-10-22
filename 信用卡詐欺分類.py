@@ -427,8 +427,12 @@ nn_model = Sequential([
 ])
 #nn_model.summary()
 nn_model.compile(Adam(lr=0.001), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-nn_model.fit(X_train, y_train, validation_split=0.2, batch_size=25, epochs=20, shuffle=True, verbose=0)
+history = nn_model.fit(X_train, y_train, validation_split=0.2, batch_size=64, epochs=100, shuffle=True)
 
+pd.DataFrame(history.history)[['accuracy','val_accuracy']].plot(figsize=(8, 5))
+plt.grid(True)
+plt.gca().set_ylim(0, 1)
+plt.show()
 
 # In[25]:
 

@@ -126,12 +126,14 @@ gbm_param_grid = {
     'n_estimators': [70,100], # 樹有幾棵
     'max_depth': [4,6,8,10], # 樹的深度
     'learning_rate': [0.2, 0.4, 0.5, 0.6],
-    'colsample_bytree': [0.5, 0.75, 1]
+    'colsample_bytree': [0.5, 0.75, 1],
+    #'reg_lambda' : [1],
+    #'reg_alpha' : [0]
     }
 
 xgb = GridSearchCV(XGBClassifier(),
                    gbm_param_grid,
-                   verbose=1, 
+                   #verbose=1, 
                    n_jobs=-1,
                    scoring ='f1_weighted')
 xgb.fit(X_train, y_train)
@@ -142,7 +144,7 @@ confusion_matrix(y_train, xgb_best.predict(X_train))
 confusion_matrix(y_test, xgb_best.predict(X_test))
 f1_score(y_test, xgb_best.predict(X_test), average='weighted')
 
-a = xgb.cv_results_
+
 
 
 from sklearn.model_selection import learning_curve
